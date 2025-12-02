@@ -6,13 +6,13 @@ fun main() {
     print("Debug (y/n) : ")
     val debug = readln().lowercase() == "y"
     print("Day : ")
-    val day = readln().toInt()
+    val day = readln().toIntOrNull() ?: throw IllegalArgumentException("Not a valid day")
     val input = getInput(day, debug)
     var output: Pair<Any?, Any?> = Pair(null, null)
     val time = measureTimeMillis {
         output = functions[day - 1](input)
     }
-    println("Day 1 in $time ms")
+    println("Day $day in $time ms")
     println("Part 1 : ${output.first}")
     println("Part 2 : ${output.second}")
 }
@@ -20,5 +20,8 @@ fun main() {
 val functions = listOf<(List<String>) -> Pair<Any?, Any?>>(
     {
         Pair(dayOnePartOne(it), dayOnePartTwo(it))
+    },
+    {
+        Pair(dayTwoPartOne(it), dayTwoPartTwo(it))
     }
 )

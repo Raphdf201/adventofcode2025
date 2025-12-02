@@ -2,10 +2,10 @@ package net.raphdf201.adventofcode2025
 
 import kotlin.math.abs
 
-fun dayOnePartOne(input: List<String>): Int {
+fun dayOnePartOne(input: List<String>): UInt {
     val processed = input.map { (it.first() == 'R') to it.substring(1).toInt() }
     var pos = 50
-    var result = 0
+    var result = 0u
     processed.forEach {
         if (it.first) pos += it.second
         else pos -= it.second
