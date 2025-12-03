@@ -29,5 +29,11 @@ val functions = listOf<(List<String>) -> Pair<Any?, Any?>>(
             dayTwoPartOne(it[0].split(",")),
             dayTwoPartTwo(it[0].split(","))
         )
+    },
+    {
+        Pair(
+            dayThreePartOne(it),
+            dayThreePartTwo(it)
+        )
     }
 )
