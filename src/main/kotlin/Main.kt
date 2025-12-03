@@ -19,9 +19,15 @@ fun main() {
 
 val functions = listOf<(List<String>) -> Pair<Any?, Any?>>(
     {
-        Pair(dayOnePartOne(it), dayOnePartTwo(it))
+        Pair(
+            dayOnePartOne(it.map { input -> (input.first() == 'R') to input.substring(1).toInt() }),
+            dayOnePartTwo(it.map { input -> (input.first() == 'R') to input.substring(1).toInt() })
+        )
     },
     {
-        Pair(dayTwoPartOne(it[0]), dayTwoPartTwo(it[0]))
+        Pair(
+            dayTwoPartOne(it[0].split(",")),
+            dayTwoPartTwo(it[0].split(","))
+        )
     }
 )
