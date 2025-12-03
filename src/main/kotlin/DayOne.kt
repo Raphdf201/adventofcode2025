@@ -6,9 +6,9 @@ fun dayOnePartOne(input: List<String>): UInt {
     val processed = input.map { (it.first() == 'R') to it.substring(1).toInt() }
     var pos = 50
     var result = 0u
-    processed.forEach {
-        if (it.first) pos += it.second
-        else pos -= it.second
+    processed.forEach { (isRight, distance) ->
+        if (isRight) pos += distance
+        else pos -= distance
 
         while (pos !in 0..99) {
             if (pos > 99) pos -= 100
