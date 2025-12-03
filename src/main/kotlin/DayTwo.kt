@@ -5,6 +5,7 @@ fun dayTwoPartOne(input: List<String>): ULong {
 
     input.forEach { range ->
         val edges = range.split("-")
+
         for (num in edges[0].toULong()..edges[1].toULong()) {
             if (Regex("(.+)\\1").matches(num.toString())) {
                 total += num
@@ -20,6 +21,7 @@ fun dayTwoPartTwo(input: List<String>): ULong {
 
     input.forEach { range ->
         val edges = range.split("-")
+
         for (num in edges[0].toULong()..edges[1].toULong()) {
             if (Regex("(\\d+)\\1+").matches(num.toString())) {
                 total += num

@@ -27,12 +27,15 @@ fun dayOnePartTwo(input: List<Pair<Boolean, Int>>): Int {
     input.forEach { (isRight, distance) ->
         val direction = if (isRight) 1 else -1
         val newPos = Math.floorMod(pos + direction * distance, 100)
+
         result += abs(Math.floorDiv(pos + direction * distance, 100))
+
         if (!isRight) {
-            val endingAtZero = if (newPos == 0) 1 else 0
-            val startingAtZero = if (pos == 0) 1 else 0
+            val startingAtZero = (pos == 0).toInt()
+            val endingAtZero = (newPos == 0).toInt()
             result += endingAtZero - startingAtZero
         }
+
         pos = newPos
     }
     return result

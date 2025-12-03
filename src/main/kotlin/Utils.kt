@@ -11,3 +11,5 @@ fun Double.notNaNOrNull(): Double? {
     if (this.isNaN()) return null
     return this
 }
+
+fun Boolean.toInt(): Int = if (this) 1 else 0
