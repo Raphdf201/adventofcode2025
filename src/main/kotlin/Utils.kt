@@ -2,14 +2,22 @@ package net.raphdf201.adventofcode2025
 
 import java.io.File
 
-fun getInput(day: Int, debug: Boolean): List<String> {
-    return if (debug) File("inputs/${day}d.txt").readLines()
-    else File("inputs/$day.txt").readLines()
-}
-
-fun Double.notNaNOrNull(): Double? {
-    if (this.isNaN()) return null
-    return this
+fun getInput(day: Int): Pair<List<String>, List<String>> {
+    return when(day) {
+        5 -> Pair(
+            File("inputs/$day-1.txt").readLines(),
+            File("inputs/$day-2.txt").readLines()
+        )
+        else -> Pair(
+            File("inputs/$day.txt").readLines(),
+            File("inputs/${day}d.txt").readLines()
+        )
+    }
 }
 
 fun Boolean.toInt(): Int = if (this) 1 else 0
+
+fun readln(msg: String): String {
+    print(msg)
+    return readln()
+}
