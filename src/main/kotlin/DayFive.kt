@@ -1,22 +1,21 @@
 package net.raphdf201.adventofcode2025
 
 fun dayFivePartOne(input: Pair<List<String>, List<String>>): ULong {
-    var freshIngredients = 0uL
+    var total = 0uL
 
-    input.second.forEach num@{ num ->
-        input.first.forEach { rangeStr ->
-            val range = rangeStr.split("-")
-            for (rangeNum in range[0].toULong()..range[1].toULong()) {
-                if (rangeNum == num.toULong()) {
-                    freshIngredients++
-                    break
-                }
-            }
-            return@num
+    val ranges = input.first.map { rangeStr ->
+        val parts = rangeStr.split("-")
+        parts[0].toULong()..parts[1].toULong()
+    }
+
+    input.second.forEach { num ->
+        val ingredientId = num.toULong()
+        if (ranges.any { range -> ingredientId in range }) {
+            total++
         }
     }
 
-    return freshIngredients
+    return total
 }
 
 fun dayFivePartTwo(input: Pair<List<String>, List<String>>): Int {
