@@ -16,7 +16,7 @@ fun main() {
 }
 
 val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, Any>>(
-    { (i, di), d ->
+    { (i, di), d ->// 1
         if (d) Pair(
             dayOnePartOne(di.map { input -> (input.first() == 'R') to input.substring(1).toInt() }),
             dayOnePartTwo(di.map { input -> (input.first() == 'R') to input.substring(1).toInt() })
@@ -25,7 +25,7 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
             dayOnePartTwo(i.map { input -> (input.first() == 'R') to input.substring(1).toInt() })
         )
     },
-    { (i, di), d ->
+    { (i, di), d ->// 2
         if (d) Pair(
             dayTwoPartOne(di[0].split(",")),
             dayTwoPartTwo(di[0].split(","))
@@ -34,7 +34,7 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
             dayTwoPartTwo(i[0].split(","))
         )
     },
-    { (i, di), d ->
+    { (i, di), d ->// 3
         if (d) Pair(
             dayThreePartOne(di),
             dayThreePartTwo(di)
@@ -43,13 +43,13 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
             dayThreePartTwo(i)
         )
     },
-    { (i, di), d ->
+    { (i, di), d ->// 4
         if (d) Pair(
             dayFourPartOne(di),
             dayFourPartTwo(di)
         ) else Pair(
-            dayThreePartOne(i),
-            dayThreePartTwo(i)
+            dayFourPartOne(i),
+            dayFourPartTwo(i)
         )
     },
     { i, d ->
