@@ -55,7 +55,7 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
     { i, d ->
         Pair(
             dayFivePartOne(i),
-            dayFivePartTwo(i)
+            dayFivePartTwo(i.first)
         )
     },
     { (i, di), d ->
