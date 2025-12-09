@@ -23,6 +23,7 @@ fun daySixPartOne(input: List<String>): ULong {
     return total
 }
 
-fun daySixPartTwo(input: List<String>): UInt {
-    return 0u
+fun daySixPartTwo(input: List<String>): ULong {
+    var total = 0uL
+    return total
 }

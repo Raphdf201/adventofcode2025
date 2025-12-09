@@ -30,9 +30,8 @@ fun dayFivePartTwo(input: List<String>): ULong {
     }.sortedBy { it.first }
 
     for (range in ranges) {
-        if (merged.isEmpty() || merged.last().last < range.first - 1uL) {
-            merged.add(range)
-        } else {
+        if (merged.isEmpty() || merged.last().last < range.first - 1uL) merged.add(range)
+        else {
             val last = merged.removeLast()
             merged.add(last.first..maxOf(last.last, range.last))
         }
