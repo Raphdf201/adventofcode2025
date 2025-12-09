@@ -52,19 +52,28 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
             dayFourPartTwo(i)
         )
     },
-    { i, d ->
+    { i, d ->// 5
         Pair(
             dayFivePartOne(i),
             dayFivePartTwo(i.first)
         )
     },
-    { (i, di), d ->
+    { (i, di), d ->// 6
         if (d) Pair(
             daySixPartOne(di),
             daySixPartTwo(di)
         ) else Pair(
             daySixPartOne(i),
             daySixPartTwo(i)
+        )
+    },
+    { (i, di), d ->// 7
+        if (d) Pair(
+            daySevenPartOne(di),
+            daySevenPartTwo(di)
+        ) else Pair(
+            daySevenPartOne(i),
+            daySevenPartTwo(i)
         )
     },
 )
