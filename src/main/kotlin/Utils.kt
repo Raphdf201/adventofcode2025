@@ -17,6 +17,10 @@ fun getInput(day: Int): Pair<List<String>, List<String>> {
 
 fun Boolean.toInt(): Int = if (this) 1 else 0
 
+fun <K> MutableMap<K, Long>.add(key: K, value: Long) {
+    put(key, getOrElse(key) { 0 } + value)
+}
+
 fun readln(msg: String): String {
     print(msg)
     return readln()

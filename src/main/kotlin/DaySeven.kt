@@ -25,7 +25,22 @@ fun daySevenPartOne(input: List<String>): Int {
     return total
 }
 
-fun daySevenPartTwo(input: List<String>): ULong {
-    var total = 0uL
-    return total
+fun daySevenPartTwo(input: List<String>): Long {
+    val total = input.drop(1).fold(
+        buildMap {
+            input.firstOrNull()?.forEachIndexed { i, c -> if (c == 'S') put(i, 1L) }
+        }
+    ) { acc, line ->
+        buildMap {
+            for ((i, n) in acc) {
+                if (line.getOrNull(i) == '^') {
+                    add(i - 1, n)
+                    add(i + 1, n)
+                } else {
+                    add(i, n)
+                }
+            }
+        }
+    }
+    return total.values.sum()
 }
