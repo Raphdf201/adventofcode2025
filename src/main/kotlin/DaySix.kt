@@ -25,5 +25,43 @@ fun daySixPartOne(input: List<String>): ULong {
 
 fun daySixPartTwo(input: List<String>): ULong {
     var total = 0uL
+    val lastLine = input.last()
+    val numberLines = input.subList(0, input.size - 1)
+
+    var index = 0
+    while (index < numberLines.first().length) {
+        val start = index
+        var last = index + 1
+        val action = lastLine[index]
+        if (last < lastLine.length - 1) {
+            while (lastLine[last] == ' ') {
+                last++
+            }
+            last--
+        } else {
+            last++
+        }
+
+        val numbers = mutableListOf<ULong>()
+        for (i in last - 1 downTo start) {
+            var numberString = ""
+            for (line in numberLines){
+                if (line[i] != ' ') {
+                    numberString += line[i]
+                }
+            }
+            numbers.add(numberString.toULong())
+        }
+
+        total +=
+            if (action == '+') {
+                numbers.sum()
+            } else {
+                numbers.reduce { acc, value -> acc * value }
+            }
+
+        index = last + 1
+    }
+
     return total
 }
