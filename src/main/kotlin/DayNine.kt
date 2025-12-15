@@ -1,16 +1,12 @@
 package net.raphdf201.adventofcode2025
 
-fun dayNinePartOne(input: List<String>): Int {
+fun dayNinePartOne(input: List<Pair<Int, Int>>): Int {
     var total = 0
-    val redTiles = input.map { line ->
-        val (x, y) = line.split(",").map { it.toInt() }
-        Pair(x, y)
-    }
 
-    for (i in redTiles.indices) {
-        for (j in i + 1 until redTiles.size) {
-            val (x1, y1) = redTiles[i]
-            val (x2, y2) = redTiles[j]
+    for (i in input.indices) {
+        for (j in i + 1 until input.size) {
+            val (x1, y1) = input[i]
+            val (x2, y2) = input[j]
 
             val width = kotlin.math.abs(x2 - x1) + 1
             val height = kotlin.math.abs(y2 - y1) + 1
@@ -23,6 +19,6 @@ fun dayNinePartOne(input: List<String>): Int {
     return total
 }
 
-fun dayNinePartTwo(input: List<String>): Int {
+fun dayNinePartTwo(input: List<Pair<Int, Int>>): Int {
     return 0
 }

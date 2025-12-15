@@ -85,20 +85,44 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
     },
     { (i, di), d ->// 8
         if (d) Pair(
-            dayEightPartOne(di),
-            dayEightPartTwo(di)
+            dayEightPartOne(di.map {
+                val (x, y, z) = it.split(",")
+                Point(x.toInt(), y.toInt(), z.toInt())
+            }),
+            dayEightPartTwo(di.map {
+                val (x, y, z) = it.split(",")
+                Point(x.toInt(), y.toInt(), z.toInt())
+            })
         ) else Pair(
-            dayEightPartOne(i),
-            dayEightPartTwo(i)
+            dayEightPartOne(i.map {
+                val (x, y, z) = it.split(",")
+                Point(x.toInt(), y.toInt(), z.toInt())
+            }),
+            dayEightPartTwo(i.map {
+                val (x, y, z) = it.split(",")
+                Point(x.toInt(), y.toInt(), z.toInt())
+            })
         )
     },
     { (i, di), d ->// 9
         if (d) Pair(
-            dayNinePartOne(di),
-            dayNinePartTwo(di)
+            dayNinePartOne(di.map { line ->
+                val (x, y) = line.split(",").map { it.toInt() }
+                Pair(x, y)
+            }),
+            dayNinePartTwo(di.map { line ->
+                val (x, y) = line.split(",").map { it.toInt() }
+                Pair(x, y)
+            })
         ) else Pair(
-            dayNinePartOne(i),
-            dayNinePartTwo(i)
+            dayNinePartOne(i.map { line ->
+                val (x, y) = line.split(",").map { it.toInt() }
+                Pair(x, y)
+            }),
+            dayNinePartTwo(i.map { line ->
+                val (x, y) = line.split(",").map { it.toInt() }
+                Pair(x, y)
+            })
         )
     },
 )

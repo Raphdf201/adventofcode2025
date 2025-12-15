@@ -2,23 +2,14 @@ package net.raphdf201.adventofcode2025
 
 import kotlin.math.sqrt
 
-fun dayEightPartOne(input: List<String>): Int {
-    val points = input.map {
-        val (x, y, z) = it.split(",")
-        Point(x.toInt(), y.toInt(), z.toInt())
-    }
-
+fun dayEightPartOne(input: List<Point>): Int {
     val edges = mutableListOf<Edge>()
-    for (i in points.indices) {
-        for (j in i + 1 until points.size) {
-            edges.add(Edge(i, j, points[i] distanceTo points[j]))
-        }
-    }
+    for (i in input.indices)
+        for (j in i + 1 until input.size)
+            edges.add(Edge(i, j, input[i] distanceTo input[j]))
 
     edges.sortBy { it.distance }
-
-    val uf = UnionFind(points.size)
-
+    val uf = UnionFind(input.size)
     val edgesToTry = minOf(1000, edges.size)
     for (i in 0 until edgesToTry) {
         val edge = edges[i]
@@ -26,7 +17,7 @@ fun dayEightPartOne(input: List<String>): Int {
     }
 
     val circuitSizes = mutableMapOf<Int, Int>()
-    for (i in points.indices) {
+    for (i in input.indices) {
         val root = uf.find(i)
         circuitSizes[root] = (circuitSizes[root] ?: 0) + 1
     }
@@ -36,49 +27,25 @@ fun dayEightPartOne(input: List<String>): Int {
     return sizes[0] * sizes[1] * sizes[2]
 }
 
-fun dayEightPartTwo(input: List<String>): Long {  // Changed to Long
-    val points = input.map {
-        val (x, y, z) = it.split(",")
-        Point(x.toInt(), y.toInt(), z.toInt())
-    }
-
-    // Create all possible edges with their distances
+fun dayEightPartTwo(input: List<Point>): Long {  // Changed to Long
     val edges = mutableListOf<Edge>()
-    for (i in points.indices) {
-        for (j in i + 1 until points.size) {
-            edges.add(Edge(i, j, points[i] distanceTo points[j]))
-        }
-    }
+    for (i in input.indices)
+        for (j in i + 1 until input.size)
+            edges.add(Edge(i, j, input[i] distanceTo input[j]))
 
-    // Sort edges by distance
     edges.sortBy { it.distance }
-
-    // Union-Find to track circuits
-    val uf = UnionFind(points.size)
-
-    // Keep connecting until all points are in one circuit
+    val uf = UnionFind(input.size)
     var lastEdge: Edge? = null
-    for (edge in edges) {
-        // Try to union - if successful, this was a meaningful connection
-        if (uf.union(edge.from, edge.to)) {
-            lastEdge = edge
-
-            // Check if we're done (all in one circuit)
-            if (uf.getComponentCount() == 1) {
-                break
-            }
-        }
+    for (edge in edges) if (uf.union(edge.from, edge.to)) {
+        lastEdge = edge
+        if (uf.getComponentCount() == 1) break
     }
 
-    // Multiply the X coordinates of the last two junction boxes connected
-    return if (lastEdge != null) {
-        points[lastEdge.from].x.toLong() * points[lastEdge.to].x.toLong()
-    } else {
-        0L
-    }
+    return if (lastEdge != null) input[lastEdge.from].x.toLong() * input[lastEdge.to].x.toLong()
+    else 0L
 }
 
-private data class Point(val x: Int, val y: Int, val z: Int)
+data class Point(val x: Int, val y: Int, val z: Int)
 
 private data class Edge(val from: Int, val to: Int, val distance: Double)
 
