@@ -36,8 +36,46 @@ fun dayEightPartOne(input: List<String>): Int {
     return sizes[0] * sizes[1] * sizes[2]
 }
 
-fun dayEightPartTwo(input: List<String>): Int {
-    return 0
+fun dayEightPartTwo(input: List<String>): Long {  // Changed to Long
+    val points = input.map {
+        val (x, y, z) = it.split(",")
+        Point(x.toInt(), y.toInt(), z.toInt())
+    }
+
+    // Create all possible edges with their distances
+    val edges = mutableListOf<Edge>()
+    for (i in points.indices) {
+        for (j in i + 1 until points.size) {
+            edges.add(Edge(i, j, points[i] distanceTo points[j]))
+        }
+    }
+
+    // Sort edges by distance
+    edges.sortBy { it.distance }
+
+    // Union-Find to track circuits
+    val uf = UnionFind(points.size)
+
+    // Keep connecting until all points are in one circuit
+    var lastEdge: Edge? = null
+    for (edge in edges) {
+        // Try to union - if successful, this was a meaningful connection
+        if (uf.union(edge.from, edge.to)) {
+            lastEdge = edge
+
+            // Check if we're done (all in one circuit)
+            if (uf.getComponentCount() == 1) {
+                break
+            }
+        }
+    }
+
+    // Multiply the X coordinates of the last two junction boxes connected
+    return if (lastEdge != null) {
+        points[lastEdge.from].x.toLong() * points[lastEdge.to].x.toLong()
+    } else {
+        0L
+    }
 }
 
 private data class Point(val x: Int, val y: Int, val z: Int)
@@ -53,6 +91,7 @@ private infix fun Point.distanceTo(other: Point): Double = sqrt(
 private class UnionFind(size: Int) {
     private val parent = IntArray(size) { it }
     private val rank = IntArray(size) { 0 }
+    private var componentCount = size
 
     fun find(x: Int): Int {
         if (parent[x] != x) {
@@ -75,6 +114,9 @@ private class UnionFind(size: Int) {
                 rank[rootX]++
             }
         }
+        componentCount--
         return true
     }
+
+    fun getComponentCount(): Int = componentCount
 }
