@@ -1,8 +1,5 @@
 package net.raphdf201.adventofcode2025
 
-import kotlin.collections.map
-import kotlin.text.split
-
 fun dayFivePartOne(input: Pair<List<String>, List<String>>): ULong {
     var total = 0uL
 
