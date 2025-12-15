@@ -8,7 +8,11 @@ fun main() {
     val input = getInput(day)
     var output: Pair<Any?, Any?> = Pair(null, null)
     val time = measureTime {
-        output = functions[day - 1](input, debug)
+        output = try {
+            functions[day - 1](input, debug)
+        } catch (e: Exception) {
+            Pair("FAIL", e.message)
+        }
     }
     println("Day $day in ${time.inWholeMilliseconds} ms")
     println("Part 1 : ${output.first}")
@@ -83,6 +87,15 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
         ) else Pair(
             dayEightPartOne(i),
             dayEightPartTwo(i)
+        )
+    },
+    { (i, di), d ->// 9
+        if (d) Pair(
+            dayNinePartOne(di),
+            dayNinePartTwo(di)
+        ) else Pair(
+            dayNinePartOne(i),
+            dayNinePartTwo(i)
         )
     },
 )
