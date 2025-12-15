@@ -1,7 +1,10 @@
 package net.raphdf201.adventofcode2025
 
-fun dayFivePartOne(input: Pair<List<String>, List<String>>): ULong {
+fun dayFivePartOne(inp: List<String>): ULong {
     var total = 0uL
+    var a = 0
+    inp.forEachIndexed { i, it -> if (it == "SPLIT") a = i }
+    val input = Pair(inp.subList(0, a), inp.subList(a + 1, inp.size))
 
     val ranges = input.first.map { rangeStr ->
         val parts = rangeStr.split("-")
@@ -18,8 +21,11 @@ fun dayFivePartOne(input: Pair<List<String>, List<String>>): ULong {
     return total
 }
 
-fun dayFivePartTwo(input: List<String>): ULong {
+fun dayFivePartTwo(inp: List<String>): ULong {
     val merged = mutableListOf<ULongRange>()
+    var a = 0
+    inp.forEachIndexed { i, it -> if (it == "SPLIT") a = i }
+    val input = inp.subList(0, a)
 
     val ranges = input.map { rangeStr ->
         val parts = rangeStr.split("-")

@@ -4,17 +4,10 @@ import java.io.File
 import kotlin.math.pow
 
 fun getInput(day: Int): Pair<List<String>, List<String>> {
-    return when (day) {
-        5 -> Pair(
-            File("inputs/$day-1.txt").readLines(),
-            File("inputs/$day-2.txt").readLines()
-        )
-
-        else -> Pair(
-            File("inputs/$day.txt").readLines(),
-            File("inputs/${day}d.txt").readLines()
-        )
-    }
+    return Pair(
+        File("inputs/$day.txt").readLines(),
+        File("inputs/${day}d.txt").readLines()
+    )
 }
 
 fun Boolean.toInt(): Int = if (this) 1 else 0
