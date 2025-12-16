@@ -1,6 +1,6 @@
 package net.raphdf201.adventofcode2025
 
-import java.util.Stack
+import java.util.*
 
 fun dayThreePartOne(input: List<String>): UInt {
     var total = 0u

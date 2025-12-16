@@ -45,7 +45,7 @@ fun daySixPartTwo(input: List<String>): ULong {
         val numbers = mutableListOf<ULong>()
         for (i in last - 1 downTo start) {
             var numberString = ""
-            for (line in numberLines){
+            for (line in numberLines) {
                 if (line[i] != ' ') {
                     numberString += line[i]
                 }

@@ -17,6 +17,7 @@ fun Double.pow(n: Int): Double {
     repeat(n) { result *= this }
     return result
 }
+
 fun <K> MutableMap<K, Long>.add(key: K, value: Long) = put(key, getOrElse(key) { 0 } + value)
 
 fun readln(msg: String): String {
