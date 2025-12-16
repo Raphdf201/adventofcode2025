@@ -2,7 +2,7 @@ package net.raphdf201.adventofcode2025
 
 import kotlin.math.sqrt
 
-fun dayEightPartOne(input: List<Point>): Int {
+fun dayEightPartOne(input: List<DayEightPoint>): Int {
     val edges = mutableListOf<Edge>()
     for (i in input.indices)
         for (j in i + 1 until input.size)
@@ -27,7 +27,7 @@ fun dayEightPartOne(input: List<Point>): Int {
     return sizes[0] * sizes[1] * sizes[2]
 }
 
-fun dayEightPartTwo(input: List<Point>): Long {  // Changed to Long
+fun dayEightPartTwo(input: List<DayEightPoint>): Long {  // Changed to Long
     val edges = mutableListOf<Edge>()
     for (i in input.indices)
         for (j in i + 1 until input.size)
@@ -45,11 +45,11 @@ fun dayEightPartTwo(input: List<Point>): Long {  // Changed to Long
     else 0L
 }
 
-data class Point(val x: Int, val y: Int, val z: Int)
+data class DayEightPoint(val x: Int, val y: Int, val z: Int)
 
 private data class Edge(val from: Int, val to: Int, val distance: Double)
 
-private infix fun Point.distanceTo(other: Point): Double = sqrt(
+private infix fun DayEightPoint.distanceTo(other: DayEightPoint): Double = sqrt(
     (other.x - this.x).toDouble().pow(2)
             + (other.y - this.y).toDouble().pow(2)
             + (other.z - this.z).toDouble().pow(2)

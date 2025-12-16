@@ -87,20 +87,20 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
         if (d) Pair(
             dayEightPartOne(di.map {
                 val (x, y, z) = it.split(",")
-                Point(x.toInt(), y.toInt(), z.toInt())
+                DayEightPoint(x.toInt(), y.toInt(), z.toInt())
             }),
             dayEightPartTwo(di.map {
                 val (x, y, z) = it.split(",")
-                Point(x.toInt(), y.toInt(), z.toInt())
+                DayEightPoint(x.toInt(), y.toInt(), z.toInt())
             })
         ) else Pair(
             dayEightPartOne(i.map {
                 val (x, y, z) = it.split(",")
-                Point(x.toInt(), y.toInt(), z.toInt())
+                DayEightPoint(x.toInt(), y.toInt(), z.toInt())
             }),
             dayEightPartTwo(i.map {
                 val (x, y, z) = it.split(",")
-                Point(x.toInt(), y.toInt(), z.toInt())
+                DayEightPoint(x.toInt(), y.toInt(), z.toInt())
             })
         )
     },
