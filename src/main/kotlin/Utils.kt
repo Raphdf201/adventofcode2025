@@ -11,7 +11,6 @@ fun getInput(day: Int): Pair<List<String>, List<String>> {
 }
 
 fun Boolean.toInt(): Int = if (this) 1 else 0
-fun Int.pow(x: Int): Double = this.toDouble().pow(x)
 fun Double.pow(n: Int): Double {
     var result = 1.0
     repeat(n) { result *= this }

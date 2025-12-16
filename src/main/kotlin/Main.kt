@@ -105,24 +105,33 @@ val functions = listOf<(Pair<List<String>, List<String>>, Boolean) -> Pair<Any, 
         )
     },
     { (i, di), d ->// 9
-        if (d) Pair(
-            dayNinePartOne(di.map { line ->
+        if (d) {
+            val pdi = di.map { line ->
                 val (x, y) = line.split(",").map { it.toInt() }
                 Pair(x, y)
-            }),
-            dayNinePartTwo(di.map { line ->
+            }
+            Pair(
+                dayNinePartOne(pdi),
+                dayNinePartTwo(pdi)
+            )
+        } else {
+            val pi = i.map { line ->
                 val (x, y) = line.split(",").map { it.toInt() }
                 Pair(x, y)
-            })
-        ) else Pair(
-            dayNinePartOne(i.map { line ->
-                val (x, y) = line.split(",").map { it.toInt() }
-                Pair(x, y)
-            }),
-            dayNinePartTwo(i.map { line ->
-                val (x, y) = line.split(",").map { it.toInt() }
-                Pair(x, y)
-            })
-        )
+            }
+            Pair(
+                dayNinePartOne(pi),
+                dayNinePartTwo(pi)
+            )
+        }
     },
+    { (i, di), d ->//10
+        if (d) Pair(
+            dayTenPartOne(di),
+            dayTenPartTwo(di)
+        ) else Pair(
+            dayTenPartOne(i),
+            dayTenPartTwo(i)
+        )
+    }
 )
